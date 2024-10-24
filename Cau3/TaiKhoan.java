@@ -1,44 +1,73 @@
 package Cau3;
-
-
 import java.util.Scanner;
-
 public class TaiKhoan {
-    public  String soTK;
-    public String chuTK;
-    public double soDu;
 
-    public  void NHAPThongTin() {
+    protected String SoTaiKhoan;
+    protected String ChuTaiKhoan;
+    protected int SoDu;
+    private String MatKhau;
+
+    public TaiKhoan(String SoTaiKhoan, String ChuTaiKhoan, int SoDu, String MatKhau) {
+        this.SoTaiKhoan = SoTaiKhoan;
+        this.ChuTaiKhoan = ChuTaiKhoan;
+        this.SoDu = SoDu;
+        this.MatKhau = MatKhau;
+    }
+    
+    public void DoiMatKhau(){
+        System.out.println("---------------------------------------------------------------");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap mat khau cu : ");
+        String MatKhauCu = sc.nextLine();
+        if(MatKhau.equals(MatKhauCu)){
+            System.out.print("Nhap mat khau moi : ");
+            String MatKhauMoi = sc.nextLine();
+            MatKhau = MatKhauMoi;
+            System.out.println("Doi mat khau thanh cong. Mat khau cua ban la : "+ MatKhau );
+        }
+        else
+            System.out.println("MAT KHAU KHONG CHINH XAC.");
+    }
+    
+    public void GuiTien(int SoTien) {
+        System.out.println("---------------------------------------------------------------");
+        if (SoTien > 0) {
+            SoDu = SoDu + SoTien;
+            System.out.println("Gui " + SoTien + " thanh cong. So du hien tai : " + SoDu);
+        } else {
+            System.out.println("SO TIEN PHAI LON HON  0.");
+        }
+    }
+
+    public void RutTien(int SoTien) {
+        System.out.println("---------------------------------------------------------------");
+        if (SoTien > 0 && SoTien <= SoDu) {
+            SoDu = SoDu - SoTien;
+            System.out.println("Rut " + SoTien + " thanh cong. So du hien tai : " + SoDu);
+        } 
+        else 
+            System.out.println("SO TIEN RUT KHONG HOP LE.");
+    }
+
+    public double KiemTraSoDu() {
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("So du hien tai : " + SoDu);
+        return SoDu;
+    }
+    public int DangNhap(){
+        System.out.println("---------------------------------------------------------------");
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so tai khoan : ");
-        soTK = sc.nextLine();
-        System.out.print("Nhap ten chu tai lhoan : ");
-        chuTK = sc.nextLine();
-        System.out.print("Nhap so du ban dau : ");
-        soDu = sc.nextDouble();
-    }
-
-    public  void GuiTien(double SoTien) {
-        if (SoTien > 0) {
-            soDu = soDu + SoTien;
-            System.out.printf("Gui %.2f thanh cong. So du hien tai: %.2f%n", SoTien,soDu);
-        } else {
-            System.out.println("So tien phai lon hon  0.");
+        String SoTaiKhoantt = sc.nextLine();
+        if(SoTaiKhoan.equals(SoTaiKhoantt)){
+            System.out.print("Nhap mat khau : ");
+            String matkhautt = sc.nextLine();
+            if(MatKhau.equals(matkhautt))
+                return 1;
+            else
+                return 0 ;
         }
-    }
-
-    public  void rutTien(double soTien) {
-        if (soTien > 0 && soTien <= soDu) {
-            soDu = soDu - soTien;
-            System.out.printf("Rut %.2f thanh cong. So du hien tai: %.2f%n", soTien,soDu);
-        } else if (soTien > soDu) {
-            System.out.println("So du khong du de rit tien.");
-        } else {
-            System.out.println("So tien rut phai lon hon 0.");
-        }
-    }
-
-    public void kiemTraSoDu(){
-        System.out.printf("So du hien tai cua tai khoan %s: %.2f%n", soTK, soDu);
-    }
+        else
+            return 0 ;
+    }    
 }
