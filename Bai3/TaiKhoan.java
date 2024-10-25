@@ -3,10 +3,10 @@ package Bai3;
 public class TaiKhoan {
     private String soTaiKhoan;
     private String chuTaiKhoan;
-    private double soDu;
+    protected double soDu;
     private String matKhau;
 
-    // Constructor
+
     public TaiKhoan(String soTaiKhoan, String chuTaiKhoan, double soDu, String matKhau) {
         this.soTaiKhoan = soTaiKhoan;
         this.chuTaiKhoan = chuTaiKhoan;
@@ -14,46 +14,47 @@ public class TaiKhoan {
         this.matKhau = matKhau;
     }
 
-    // Phương thức gửi tiền
+
     public void guiTien(double soTien) {
         if (soTien > 0) {
             soDu += soTien;
-            System.out.println("Đã gửi " + soTien + " vào tài khoản. Số dư hiện tại: " + soDu);
+            System.out.println("Da gui " + soTien + " vao tai khoan. So du hien tai: " + soDu);
         } else {
-            System.out.println("Số tiền gửi không hợp lệ.");
+            System.out.println("So tien gui khong hop le.");
         }
     }
 
-    // Phương thức rút tiền
+
     public void rutTien(double soTien) {
         if (soTien > 0 && soTien <= soDu) {
             soDu -= soTien;
-            System.out.println("Đã rút " + soTien + " từ tài khoản. Số dư hiện tại: " + soDu);
+            System.out.println("Da rut " + soTien + " tu tai khoan. So du hien tai: " + soDu);
         } else {
-            System.out.println("Số tiền rút không hợp lệ hoặc không đủ số dư.");
+            System.out.println("So tien rut khong hop le hoac khong du so du.");
         }
     }
 
-    // Phương thức kiểm tra số dư
+  
     public void kiemTraSoDu() {
-        System.out.println("Số dư tài khoản: " + soDu);
+        System.out.println("So du tai khoan: " + soDu);
     }
 
-    // Phương thức đổi mật khẩu
+
     public void doiMatKhau(String matKhauCu, String matKhauMoi) {
         if (this.matKhau.equals(matKhauCu)) {
             this.matKhau = matKhauMoi;
-            System.out.println("Đổi mật khẩu thành công.");
+            System.out.println("Doi mat khau thanh cong.");
         } else {
-            System.out.println("Mật khẩu cũ không đúng.");
+            System.out.println("Mat khau cu khong dung.");
         }
     }
 
-    // Phương thức lấy thông tin tài khoản
+
     public void thongTinTaiKhoan() {
-        System.out.println("Số tài khoản: " + soTaiKhoan);
-        System.out.println("Chủ tài khoản: " + chuTaiKhoan);
-        System.out.println("Số dư: " + soDu);
+        System.out.println("So tai khoan: " + soTaiKhoan);
+        System.out.println("Chu tai khoan: " + chuTaiKhoan);
+        System.out.println("So du: " + soDu);
     }
 }
+
 

@@ -6,43 +6,57 @@ public class Bai3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // Nhập thông tin tài khoản
-        System.out.print("Nhập số tài khoản: ");
+
+        System.out.print("Nhap so tai khoan: ");
         String soTaiKhoan = scanner.nextLine();
         
-        System.out.print("Nhập chủ tài khoản: ");
+        System.out.print("Nhap chu tai khoan: ");
         String chuTaiKhoan = scanner.nextLine();
         
-        System.out.print("Nhập số dư ban đầu: ");
+        System.out.print("Nhap so du ban dau: ");
         double soDu = scanner.nextDouble();
         
-        System.out.print("Nhập mật khẩu: ");
+        System.out.print("Nhap mat khau: ");
         String matKhau = scanner.next();
 
-        // Tạo đối tượng tài khoản
-        TaiKhoan taiKhoan = new TaiKhoan(soTaiKhoan, chuTaiKhoan, soDu, matKhau);
+        System.out.print("Chon loai tai khoan (1. Tiet Kiem, 2. Thanh Toan): ");
+        int loaiTaiKhoan = scanner.nextInt();
+        scanner.nextLine(); 
 
-        // Ghi thông tin tài khoản
+        TaiKhoan taiKhoan;
+
+        if (loaiTaiKhoan == 1) {
+            System.out.print("Nhap lai suat (%): ");
+            double laiSuat = scanner.nextDouble();
+            taiKhoan = new TaiKhoanTietKiem(soTaiKhoan, chuTaiKhoan, soDu, matKhau, laiSuat);
+        } else {
+            System.out.print("Nhap phi giao dich: ");
+            double phiGiaoDich = scanner.nextDouble();
+            taiKhoan = new TaiKhoanThanhToan(soTaiKhoan, chuTaiKhoan, soDu, matKhau, phiGiaoDich);
+        }
+
+
         taiKhoan.thongTinTaiKhoan();
 
-        // Thực hiện các thao tác với tài khoản
         while (true) {
-            System.out.println("\nChọn thao tác: ");
-            System.out.println("1. Gửi tiền");
-            System.out.println("2. Rút tiền");
-            System.out.println("3. Kiểm tra số dư");
-            System.out.println("4. Đổi mật khẩu");
-            System.out.println("5. Thoát");
+            System.out.println("\nChon thao tac: ");
+            System.out.println("1. Gui tien");
+            System.out.println("2. Rut tien");
+            System.out.println("3. Kiem tra so du");
+            System.out.println("4. Doi mat khau");
+            System.out.println("5. Thanh toan tien dien");
+            System.out.println("6. Thanh toan tien nuoc");
+            System.out.println("7. Thoat");
 
             int luaChon = scanner.nextInt();
             switch (luaChon) {
                 case 1:
-                    System.out.print("Nhập số tiền gửi: ");
+                    System.out.print("Nhap so tien gui: ");
                     double soTienGui = scanner.nextDouble();
                     taiKhoan.guiTien(soTienGui);
                     break;
                 case 2:
-                    System.out.print("Nhập số tiền rút: ");
+                    System.out.print("Nhap so tien rut: ");
                     double soTienRut = scanner.nextDouble();
                     taiKhoan.rutTien(soTienRut);
                     break;
@@ -50,19 +64,37 @@ public class Bai3 {
                     taiKhoan.kiemTraSoDu();
                     break;
                 case 4:
-                    System.out.print("Nhập mật khẩu cũ: ");
+                    System.out.print("Nhap mat khau cu: ");
                     String matKhauCu = scanner.next();
-                    System.out.print("Nhập mật khẩu mới: ");
+                    System.out.print("Nhap mat khau moi: ");
                     String matKhauMoi = scanner.next();
                     taiKhoan.doiMatKhau(matKhauCu, matKhauMoi);
                     break;
                 case 5:
-                    System.out.println("Thoát chương trình.");
+                    if (taiKhoan instanceof TaiKhoanThanhToan) {
+                        System.out.print("Nhap so tien thanh toan tien dien: ");
+                        double soTienDien = scanner.nextDouble();
+                        ((TaiKhoanThanhToan) taiKhoan).thanhToanTienDien(soTienDien);
+                    } else {
+                        System.out.println("Tai khoan khong phai la tai khoan thanh toan.");
+                    }
+                    break;
+                case 6:
+                    if (taiKhoan instanceof TaiKhoanThanhToan) {
+                        System.out.print("Nhap so tien thanh toan tien nuoc: ");
+                        double soTienNuoc = scanner.nextDouble();
+                        ((TaiKhoanThanhToan) taiKhoan).thanhToanTienNuoc(soTienNuoc);
+                    } else {
+                        System.out.println("Tai khoan khong phai la tai khoan thanh toan.");
+                    }
+                    break;
+                case 7:
+                    System.out.println("Thoat chuong trinh.");
+                    scanner.close();
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ.");
+                    System.out.println("Lua chon khong hop le.");
             }
         }
     }
 }
-
