@@ -1,5 +1,4 @@
-package TK_Ngan_Hang;
-
+package Cau3;
 public class TK_ThanhToan extends TaiKhoan {
     private int HanMucRutTien;
 
