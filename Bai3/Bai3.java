@@ -5,35 +5,22 @@ import java.util.Scanner;
 public class Bai3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
 
-        System.out.print("Nhap so tai khoan: ");
-        String soTaiKhoan = scanner.nextLine();
-        
-        System.out.print("Nhap chu tai khoan: ");
-        String chuTaiKhoan = scanner.nextLine();
-        
-        System.out.print("Nhap so du ban dau: ");
-        double soDu = scanner.nextDouble();
-        
-        System.out.print("Nhap mat khau: ");
-        String matKhau = scanner.next();
+
+        ChuTaiKhoan chuTaiKhoan = new ChuTaiKhoan("Pham Minh Chinh");
+
+
+        TaiKhoanTietKiem tkTK = new TaiKhoanTietKiem("001", chuTaiKhoan, 1000000, "123456", 10);
+
+
+        TaiKhoanThanhToan tkTT = new TaiKhoanThanhToan("002", chuTaiKhoan, 2000000, "654321", 10000, 500000);
+
 
         System.out.print("Chon loai tai khoan (1. Tiet Kiem, 2. Thanh Toan): ");
         int loaiTaiKhoan = scanner.nextInt();
         scanner.nextLine(); 
 
-        TaiKhoan taiKhoan;
-
-        if (loaiTaiKhoan == 1) {
-            System.out.print("Nhap lai suat (%): ");
-            double laiSuat = scanner.nextDouble();
-            taiKhoan = new TaiKhoanTietKiem(soTaiKhoan, chuTaiKhoan, soDu, matKhau, laiSuat);
-        } else {
-            System.out.print("Nhap phi giao dich: ");
-            double phiGiaoDich = scanner.nextDouble();
-            taiKhoan = new TaiKhoanThanhToan(soTaiKhoan, chuTaiKhoan, soDu, matKhau, phiGiaoDich);
-        }
+        TaiKhoan taiKhoan = (loaiTaiKhoan == 1) ? tkTK : tkTT;
 
 
         taiKhoan.thongTinTaiKhoan();
@@ -98,3 +85,6 @@ public class Bai3 {
         }
     }
 }
+
+
+
